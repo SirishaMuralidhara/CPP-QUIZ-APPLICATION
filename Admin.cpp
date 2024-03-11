@@ -27,29 +27,31 @@
 		  vector<Question> questions;
 		  string title, desc, qid;
 		  cout << "Fill quiz details"<<endl;
+		  cout << "-----------------------------------------------------------------------" << endl;
 
 		  cout << "Enter Quiz ID:"<<endl;
-		  getline(cin,qid);
+		  getline(cin>>ws,qid);
 		  cout << "enter quiz title:"<<endl;
-		  getline(cin, title);
+		  getline(cin>>ws, title);
 		  cout << "Enter Description:"<<endl;
-		  getline(cin, desc);
+		  getline(cin>>ws, desc);
 		  string question, ch1, ch2, ch3, ch4, answer;
+		  cout << "-----------------------------------------------------------------------" << endl;
 
 		  for (int i = 0; i < 10; i++) {
 
-			  cout << "Enter the question:";
-			  getline(cin, question);
-			  cout << "Enter first option:";
-			  getline(cin,ch1);
+			  cout << "Enter the question:	";
+			  getline(cin>>ws, question);
+			  cout << "Enter first option:	";
+			  getline(cin>>ws,ch1);
 			  cout << "Enter second option:";
-			  getline(cin, ch2);
-			  cout << "Enter third option:";
-			  getline(cin,ch3);
-			  cout << "Enter fourth option:";
-			  getline(cin,ch4);
-			  cout << "Enter correct answer:";
-			  getline(cin,answer);
+			  getline(cin>>ws, ch2);
+			  cout << "Enter third option:	";
+			  getline(cin>>ws,ch3);
+			  cout << "Enter fourth option:	";
+			  getline(cin>>ws,ch4);
+			  cout << "Enter correct answer:	";
+			  getline(cin>>ws,answer);
 
 			  vector<string> choices = { ch1, ch2, ch3, ch4 };
 

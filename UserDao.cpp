@@ -95,16 +95,19 @@ bool UserDao::viewResult(string user)
 bool UserDao::viewProgress(string user, string quizID)
 {
 	try{
-	sql::PreparedStatement* pstmt = conn->prepareStatement("SELECT * from progress where username=? and quizID=?");
+	sql::PreparedStatement* pstmt = conn->prepareStatement("SELECT p.questionID, q.question, p.userAnswer, q.answer FROM progress as p JOIN questions as q ON p.quizID = q.quizID and p.questionID = q.questionID WHERE p.username = ? AND p.quizID = ?");
+	cout << "stmt declared" << endl;
 	pstmt->setString(1, user);
 	pstmt->setString(2, quizID);
-
+	cout << "Statement completed?" << endl;
 	res = pstmt->executeQuery();
-	//cout << "Quiz ID" << "    " << "Score(out of 10)" << endl;
-	cout << "QuestionID" << "          " << "User Answer" << endl;
+	
+	cout << "QuestionID" <<  "    "<<"Your Answer" << "					 "<<"Correct Answer"<<endl;
+	//"    " << "Question" <<
 
 	while (res->next()) {
-		cout << res->getString("questionID") << "                  " << res->getString("userAnswer") << endl;
+		cout << res->getString("questionID") << "		  " << res->getString("userAnswer") << "				 " << res->getString("answer")<<endl;
+		//<< res->getString("question")<< "				" 
 	}
 
 	delete pstmt;

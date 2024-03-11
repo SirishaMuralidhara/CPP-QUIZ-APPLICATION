@@ -15,10 +15,10 @@ int main()
 	Application ap;
 	UserDao ud(ap.establishConnection());
 	AdminDao aDao(ap.establishConnection());
+	Admin ad;
 
 
-
-	int ch = 0, loggedIn = 0, iAmUser=0,ch1=0;
+	int ch = 0, loggedIn = 0, iAmUser=1,ch1=0;
 	string username, password;
 	do {
 		cout << "Welcome!!!!" << endl;
@@ -68,8 +68,8 @@ int main()
 		}
 		case 3:
 		{
-			iAmUser = 1;
-			Admin ad;
+			iAmUser = 0;
+			
 			do {
 			cout << "1. Login, if you an existing quiz manager " << endl;
 			cout << "2.Register, if you are a new quiz manager " << endl;
@@ -94,8 +94,7 @@ int main()
 						}
 						loggedIn = 1;
 						cout << "You have logged in successfully !!" << endl;
-						Quiz q = ad.addQuizDetails();
-						aDao.addQuiz(q);
+						
 						ch = 0;
 					}
 
@@ -129,15 +128,15 @@ int main()
 
 	} while (ch != 0);
 
-	if (loggedIn == 1 && iAmUser==0) {
+	if (loggedIn == 1 && iAmUser==1) {
 		string uiQuizID;
 		do {
 			ch = 0;
-			cout << "After login:" << endl;
+			//cout << "After login:" << endl;
 			cout << endl << "Welcome Again!!" << endl;
 			cout << "Enter '1' to take a quiz " << endl;
 			cout << "Enter 2 to view your scores  until now !" << endl;
-			cout << "Enter 3 to see progress level based on your history !" << endl;
+			//cout << "Enter 3 to see progress level based on your history !" << endl;
 			cout << "Enter 4 to quit" << endl;
 			cin >> ch;
 			switch (ch) {
@@ -173,14 +172,31 @@ int main()
 			}
 			default:
 			{
-				
 				cout << "Invalid input !!" << "Try again!!" << endl;
 			}
 			}
 
 		} while (ch != 0);
+	}
 
-		//vector<vector<string>> res = ud.allquiz();
+
+	if (loggedIn == 1 && iAmUser == 0) {
+		do {
+			ch = 0;
+			cout << "Welcome Again!!" << endl;
+			cout << "Enter 1 to add a quiz !" << endl;
+			cin >> ch;
+			switch (ch) {
+			case 1:
+			{
+				Quiz q = ad.addQuizDetails();
+				aDao.addQuiz(q);
+				cout << endl;
+				break;
+			}
+			}
+			
+		} while (ch != 0);
 	}
 
 

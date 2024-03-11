@@ -32,7 +32,7 @@ bool Result::startQuiz(string username,Quiz ob)
 		cout << "b)" << ob.questions[i].choices[1] << endl;
 		cout << "c)" << ob.questions[i].choices[2] << endl;
 		cout << "d)" << ob.questions[i].choices[3] << endl;
-		cin >> ans;
+		getline(cin >>ws, ans);
 		answers.push_back(ans);
 		
 		if (ans == ob.questions[i].answer) {
